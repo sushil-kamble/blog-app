@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block postform %}
+    <div class="container bg-white pb-3">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-center">Delete Post</legend>
+                <h3 class="h3-responsive nowrap ml-2">Are you sure you want to delete the post "{{ object.title }}"</h3>
+            </fieldset>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-danger">Yes, Delete</button>
+                <a href="{% url 'post-detail' object.id %}" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

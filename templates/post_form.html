@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load crispy_forms_filters %}
+
+{% block postform %}
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-center">Blog Post</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-blue btn-block">Post</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

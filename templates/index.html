@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" />
+    <title class="robotocon">Document</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/mdb.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.min.css' %}">
+    
+</head>
+<body>
+<!-- Start project -->
+
+<div class="container-fluid">
+    <!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color container">
+
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="#">Navbar</a>
+
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <form class="form-inline">
+        <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item mr-2">
+                    <a class="nav-link border border-dark" href="{% url 'post-create' %}">New Post</a>
+                </li>
+                <li class="nav-item mr-2">
+                    <a class="nav-link border border-dark" href="{% url 'profile' %}">Welcome, {{ user.username }}</a>
+                </li>
+                <li class="nav-item mr-2">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item mr-2">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item mr-2">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </form>
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="text-dark">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% block homeblock %}
+            {% endblock %}
+
+            {% block postblock %}
+            {% endblock %}
+
+            {% block postform %}
+            {% endblock %}
+
+            {% block registerblock %}
+            {% endblock %}
+
+            {% block loginblock %}
+            {% endblock %}
+
+            {% block logoutblock %}
+            {% endblock %}
+
+            {% block profileblock %}
+            {% endblock %}
+        </div>
+        <div class="col-lg-4">
+            <div class="container mdb-color lighten-5 p-3">
+                <h4>Our Side bar</h4>
+                <ul class="list-group">
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item list-group-item-primary">A simple primary list group item</li>
+                  <li class="list-group-item list-group-item-secondary">A simple secondary list group item</li>
+                  <li class="list-group-item list-group-item-success">A simple success list group item</li>
+                  <li class="list-group-item list-group-item-danger">A simple danger list group item</li>
+                  <li class="list-group-item list-group-item-warning">A simple warning list group item</li>
+                  <li class="list-group-item list-group-item-info">A simple info list group item</li>
+                  <li class="list-group-item list-group-item-light">A simple light list group item</li>
+                  <li class="list-group-item list-group-item-dark">A simple dark list group item</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- End Project -->
+</body>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/mdb.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+</html>

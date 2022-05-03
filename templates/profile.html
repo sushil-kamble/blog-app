@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load crispy_forms_filters %}
+
+{% block profileblock %}
+<div class="container bg-white p-2">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="{{ user.profile.image.url }}" alt="" class="img-thumbnail"
+                 style="width: 100% !important; height: 100% !important;">
+        </div>
+        <div class="col-sm-8">
+            <h1 class="h3-responsive">{{ user.username }}</h1>
+            <h4 class="h6-responsive">{{ user.email }}</h4>
+            <div class="btn-group mb-4" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-sm btn-primary mr-4">Update Profile</button>
+              <button type="button" class="btn btn-sm btn-danger mr-4">Delete Profile</button>
+            </div>
+        </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4 text-center">Registeration Form</legend>
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+        </fieldset>
+        <div class="form-group">
+            <button type="submit" class="btn btn-outline-blue btn-block">Update</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

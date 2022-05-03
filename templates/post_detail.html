@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block postblock %}
+<div class="container">
+    <div class="card mb-3">
+          <div class="card-header m-1 p-1">
+              <img class=" float-right m-0 p-0" src="{{ object.author.profile.image.url }}" alt=""
+              style="width: 42px; height: 42px">
+              <a href="{% url 'profile' %}" class="float-right mr-2 mt-1 h4-responsive">@{{ object.author }}</a>
+              <a href="{% url 'post-detail' post.id %}" class="h4 mt-2 ml-2">{{ object.title }}</a>
+              {% if object.author == user %}
+              <br><a href="{% url 'post-update' post.id%}" class="btn btn-sm btn-primary">Update</a>
+              <a href="{% url 'post-delete' post.id%}" class="btn btn-sm btn-danger">Delete</a>
+              {% endif %}
+          </div>
+          <div class="card-body">
+            <p class="card-text">{{ object.content }}</p>
+          </div>
+          <div class="card-footer text-muted">
+            {{ object.date_posted|date:'F d, Y' }}
+          </div>
+    </div>
+</div>
+{% endblock %}
